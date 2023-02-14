@@ -10,6 +10,7 @@
     tools:context=".MathTest">
     <LinearLayout
         android:id="@+id/questions"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -99,7 +100,6 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/result"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -129,5 +129,14 @@
             android:textColor="@color/black"
             android:textSize="18dp"
             android:layout_marginTop="15dp"/>
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:onClick="showRating"
+            android:textColor="@color/white"
+            android:textSize="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show rating"/>
     </LinearLayout>
 </LinearLayout>

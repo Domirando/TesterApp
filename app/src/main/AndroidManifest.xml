@@ -15,6 +15,9 @@
         tools:ignore="MissingClass"
         tools:targetApi="31">
         <activity
+            android:name=".Rating"
+            android:exported="false" />
+        <activity
             android:name=".PhysicsTest"
             android:exported="false" />
         <activity

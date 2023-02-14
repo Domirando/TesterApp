@@ -25,7 +25,7 @@ class EnglishTest : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_math_test)
+        setContentView(R.layout.activity_english_test)
         tests.add(Test("What is the definition of 'mother'", "person who give a birth to someone", "doctor who treats everyone", "a person who teaches to maths", "a sister of someone", "person who give a birth to someone"))
         tests.add(Test("What is the definition of 'sister'", "a girl who is the closest relative to someone", "doctor who treats everyone", "a person who teaches to maths", "a sister of someone", "person who give a birth to someone"))
         tests.add(Test("What is the definition of 'brother'", "person who give a birth to someone", "a boy who is the closest relative to someone", "a person who teaches to maths", "a sister of someone", "person who give a birth to someone"))

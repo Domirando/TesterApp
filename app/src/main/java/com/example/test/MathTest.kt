@@ -1,6 +1,7 @@
 package com.example.test
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -136,5 +137,10 @@ class MathTest : AppCompatActivity(), View.OnClickListener {
             numberOfIncorrectAnswers = tests.size-numberOfCorrectAnswers
 
         }
+    }
+
+    fun showRating(view: View) {
+        val i = Intent(this, Rating::class.java)
+        startActivity(i)
     }
 }

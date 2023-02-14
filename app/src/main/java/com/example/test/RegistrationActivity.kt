@@ -31,7 +31,7 @@ class RegistrationActivity : AppCompatActivity() {
             startActivity(i)
         }
         physics.setOnClickListener {
-            val i = Intent(this, EnglishTest::class.java)
+            val i = Intent(this, PhysicsTest::class.java)
             startActivity(i)
         }
     }
