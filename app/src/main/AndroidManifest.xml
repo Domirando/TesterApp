@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,9 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test"
+        tools:ignore="MissingClass"
         tools:targetApi="31">
         <activity
-            android:name=".SubjectsOption"
+            android:name=".PhysicsTest"
+            android:exported="false" />
+        <activity
+            android:name=".EnglishTest"
+            android:exported="false"
+            android:parentActivityName=".RegistrationActivity" />
+        <activity
+            android:name=".MathTest"
+            android:exported="false"
+            android:parentActivityName=".RegistrationActivity" />
+        <activity
+            android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
