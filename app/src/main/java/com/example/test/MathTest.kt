@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -11,6 +12,8 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_math_test.*
 import lecho.lib.hellocharts.model.PieChartData
 import lecho.lib.hellocharts.model.SliceValue
@@ -23,10 +26,12 @@ class MathTest : AppCompatActivity(), View.OnClickListener {
     var numberOfCorrectAnswers: Int = 0
     var count: Boolean = false
     var pieData = ArrayList<SliceValue>()
+
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_math_test)
+
         tests.add(Test("6 + 6 / 6", "6", "76", "10", "15", "15"))
         tests.add(Test("8 * 2 - 9", "12", "7", "100", "24", "100"))
         tests.add(Test("8 * 2 - 9", "15", "9", "102", "24", "9"))
@@ -50,6 +55,8 @@ class MathTest : AppCompatActivity(), View.OnClickListener {
                 var pieChartData = PieChartData(pieData)
                 chart.pieChartData = pieChartData;
                 score.text = "${numberOfCorrectAnswers} out of ${tests.size}"
+                var intent = Intent()
+                var name = intent.getStringExtra("name")
             }
             var TOAST_LENGTH = 50
             check()
@@ -138,8 +145,16 @@ class MathTest : AppCompatActivity(), View.OnClickListener {
 
         }
     }
-
     fun showRating(view: View) {
+        var userList = mutableListOf<ModelClass>()
+        userList.add(ModelClass(intent.getStringExtra("name").toString(), numberOfCorrectAnswers))
+        val prefEditor = PreferenceManager.getDefaultSharedPreferences(this).edit()
+        val jsonString = Gson().toJson(userList)
+        prefEditor.putString("users_scores", jsonString).apply()
+        Toast.makeText(this, "saved ${userList.size} users to prefernces", Toast.LENGTH_SHORT).show()
+
+
+
         val i = Intent(this, Rating::class.java)
         startActivity(i)
     }

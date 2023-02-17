@@ -24,6 +24,7 @@ class RegistrationActivity : AppCompatActivity() {
         }
         math.setOnClickListener {
             val i = Intent(this, MathTest::class.java)
+            i.putExtra("name", name.text)
             startActivity(i)
         }
         english.setOnClickListener {
