@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -26,11 +25,15 @@ class MathTest : AppCompatActivity(), View.OnClickListener {
     var numberOfCorrectAnswers: Int = 0
     var count: Boolean = false
     var pieData = ArrayList<SliceValue>()
-
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_math_test)
+        var sharedPreferences = getSharedPreferences("reg", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+        var gson = Gson()
+        var userList = mutableListOf<ModelClass>()
+        var type = object : TypeToken<List<ModelClass>>() {}.type
 
         tests.add(Test("6 + 6 / 6", "6", "76", "10", "15", "15"))
         tests.add(Test("8 * 2 - 9", "12", "7", "100", "24", "100"))
@@ -55,8 +58,6 @@ class MathTest : AppCompatActivity(), View.OnClickListener {
                 var pieChartData = PieChartData(pieData)
                 chart.pieChartData = pieChartData;
                 score.text = "${numberOfCorrectAnswers} out of ${tests.size}"
-                var intent = Intent()
-                var name = intent.getStringExtra("name")
             }
             var TOAST_LENGTH = 50
             check()
@@ -140,21 +141,20 @@ class MathTest : AppCompatActivity(), View.OnClickListener {
                 }
                 numberOfCorrectAnswers++
             }
-            Log.d("correct answers -> ", numberOfCorrectAnswers.toString())
             numberOfIncorrectAnswers = tests.size-numberOfCorrectAnswers
 
         }
     }
     fun showRating(view: View) {
+        var sharedPreferences = getSharedPreferences("reg", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+        var gson = Gson()
         var userList = mutableListOf<ModelClass>()
         userList.add(ModelClass(intent.getStringExtra("name").toString(), numberOfCorrectAnswers))
-        val prefEditor = PreferenceManager.getDefaultSharedPreferences(this).edit()
-        val jsonString = Gson().toJson(userList)
-        prefEditor.putString("users_scores", jsonString).apply()
-        Toast.makeText(this, "saved ${userList.size} users to prefernces", Toast.LENGTH_SHORT).show()
-
-
-
+        val str = gson.toJson(userList)
+        edit.putString("users", str).commit()
+        edit.apply()
+        Log.d("cjh", str)
         val i = Intent(this, Rating::class.java)
         startActivity(i)
     }

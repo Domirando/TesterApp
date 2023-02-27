@@ -9,6 +9,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_registration.*
 
 class RegistrationActivity : AppCompatActivity() {
+    lateinit var name_reg:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
@@ -20,11 +21,13 @@ class RegistrationActivity : AppCompatActivity() {
                 form.visibility = View.INVISIBLE
                 subjects.visibility = View.VISIBLE
                 title_name.text = name.text
+                name_reg = name.text.toString()
             }
         }
         math.setOnClickListener {
             val i = Intent(this, MathTest::class.java)
-            i.putExtra("name", name.text)
+            Log.d("cjh1", name_reg)
+            i.putExtra("name", name_reg)
             startActivity(i)
         }
         english.setOnClickListener {

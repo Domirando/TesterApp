@@ -25,9 +25,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:weightSum="2"
         android:id="@+id/result_box"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         tools:ignore="MissingConstraints">
-
+<TextView
+    android:layout_weight="1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="asdfdsaf"/>
+<TextView
+    android:layout_weight="1"
+    android:textAlignment="textEnd"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="asdfdsaf"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
