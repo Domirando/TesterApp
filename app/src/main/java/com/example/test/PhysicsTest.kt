@@ -26,11 +26,11 @@ class PhysicsTest : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_math_test)
-        tests.add(Test("6 + 6 / 6", "6", "76", "10", "15", "15"))
-        tests.add(Test("8 * 2 - 9", "12", "7", "100", "24", "100"))
-        tests.add(Test("8 * 2 - 9", "15", "9", "102", "24", "9"))
-        tests.add(Test("10 + 9 - 12", "14", "7", "17", "31", "17"))
-        tests.add(Test("7 + 7 - 7 * 7 / 7", "16", "7", "21", "4", "16"))
+        tests.add(Test("Mass definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The amount of matter in an object."))
+        tests.add(Test("Acceleration definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The rate at which an object changes its velocity."))
+        tests.add(Test("Gravity definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The force a planet or other body draws objects toward its center."))
+        tests.add(Test("Velocity definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The speed of an object in a certain direction."))
+        tests.add(Test("Friction definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The force that opposes motion between two objects in contact."))
         createNumber(tests.size)
         createTest(index)
 

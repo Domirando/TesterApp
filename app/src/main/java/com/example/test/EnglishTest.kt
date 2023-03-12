@@ -26,11 +26,11 @@ class EnglishTest : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_english_test)
-        tests.add(Test("What is the definition of 'mother'", "person who give a birth to someone", "doctor who treats everyone", "a person who teaches to maths", "a sister of someone", "person who give a birth to someone"))
-        tests.add(Test("What is the definition of 'sister'", "a girl who is the closest relative to someone", "doctor who treats everyone", "a person who teaches to maths", "a sister of someone", "person who give a birth to someone"))
-        tests.add(Test("What is the definition of 'brother'", "person who give a birth to someone", "a boy who is the closest relative to someone", "a person who teaches to maths", "a sister of someone", "person who give a birth to someone"))
-        tests.add(Test("What is the definition of 'uncle'", "person who give a birth to someone", "doctor who treats everyone", "a person who teaches to maths", "a sister of someone", "person who give a birth to someone"))
-        tests.add(Test("What is the definition of 'father'", "person who give a birth to someone", "doctor who treats everyone", "a person who teaches to maths", "a sister of someone", "person who give a birth to someone"))
+        tests.add(Test("___ is a place where you buy medicine", "a bookstore", "a restaurant", "a dance club", "a drugstore", "a drugstore"))
+        tests.add(Test("___ is an insect which makes honey", "a bee", "a spider", "a crocodile", "a fly", "a bee"))
+        tests.add(Test("___ are something which is used for cutting paper", "litter", "scissors", "stocks", "sharpener", "scissors"))
+        tests.add(Test("___ is a place where you borrow books", "a laundromat", "a theatre", "a library", "a gym","a library"))
+        tests.add(Test("Which word means nearly the same as \"scream\"?", "find", "stop", "sell", "shout", "shout"))
         createNumber(tests.size)
         createTest(index)
 

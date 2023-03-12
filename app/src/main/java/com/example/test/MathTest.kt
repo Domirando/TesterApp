@@ -35,11 +35,11 @@ class MathTest : AppCompatActivity(), View.OnClickListener {
         var userList = mutableListOf<ModelClass>()
         var type = object : TypeToken<List<ModelClass>>() {}.type
 
-        tests.add(Test("6 + 6 / 6", "6", "76", "10", "15", "15"))
-        tests.add(Test("8 * 2 - 9", "12", "7", "100", "24", "100"))
-        tests.add(Test("8 * 2 - 9", "15", "9", "102", "24", "9"))
-        tests.add(Test("10 + 9 - 12", "14", "7", "17", "31", "17"))
-        tests.add(Test("7 + 7 - 7 * 7 / 7", "16", "7", "21", "4", "16"))
+        tests.add(Test("6 + 6 / 6", "7", "76", "10", "15", "7"))
+        tests.add(Test("8 * 2 - 9", "12", "7", "100", "24", "7"))
+        tests.add(Test("8 * 3 - 10", "14", "9", "102", "24", "14"))
+        tests.add(Test("10 + 9 - 12", "14", "7", "17", "31", "7"))
+        tests.add(Test("7 - 7 * 7 / 7", "16", "7", "0", "4", "0"))
         createNumber(tests.size)
         createTest(index)
 
