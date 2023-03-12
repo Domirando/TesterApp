@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_math_test.*
 import lecho.lib.hellocharts.model.PieChartData
 import lecho.lib.hellocharts.model.SliceValue
 
-
 class MathTest : AppCompatActivity(), View.OnClickListener {
     var tests = arrayListOf<Test>()
     var index = 0
@@ -148,13 +147,8 @@ class MathTest : AppCompatActivity(), View.OnClickListener {
     fun showRating(view: View) {
         var sharedPreferences = getSharedPreferences("reg", MODE_PRIVATE)
         var edit = sharedPreferences.edit()
-        var gson = Gson()
-        var userList = mutableListOf<ModelClass>()
-        userList.add(ModelClass(intent.getStringExtra("name").toString(), numberOfCorrectAnswers))
-        val str = gson.toJson(userList)
-        edit.putString("users", str).commit()
+        edit.putString("score", numberOfCorrectAnswers.toString()).commit()
         edit.apply()
-        Log.d("cjh", str)
         val i = Intent(this, Rating::class.java)
         startActivity(i)
     }

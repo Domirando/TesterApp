@@ -13,52 +13,23 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_math_test.*
 import kotlinx.android.synthetic.main.activity_rating.*
+import kotlin.properties.Delegates
 
 class Rating : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView (R.layout.activity_rating)
-        val users = getUser()
-        if (users.size-1 < 5 ){
-            createUser(users.size-1, users as MutableList<ModelClass>)
-        }else {
-            createUser(5, users as MutableList<ModelClass>)
-        }
+        createUser()
     }
 
-    fun createUser(n: Int, users: MutableList<ModelClass>) {
-        for (i in 0 until n) {
-            var name = TextView(this)
-            name.id = i
-            name.text ="${users[i].name}"
-            name.tag = "$i"
-            val param = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                1.0f
-            )
-            name.setLayoutParams(param)
-            var score = TextView(this)
-            score.id = i
-            score.text ="${users[i].score}"
-            score.tag = "$i"
-            score.textAlignment = View.TEXT_ALIGNMENT_TEXT_END
-            val param1 = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                1.0f
-            )
-            score.setLayoutParams(param1)
-            result_box.addView(score)
-        }
-    }
-    private fun getUser():List<ModelClass> {
-        var userList = mutableListOf<ModelClass>()
+    fun createUser() {
         var sharedPreferences = getSharedPreferences("reg", MODE_PRIVATE)
-        var gson = Gson()
-        var type = object : TypeToken<List<ModelClass>>() {}.type
-        var users = sharedPreferences.getString("users","")
-        userList = gson.fromJson(users,type)
-        return userList
+        var name = sharedPreferences.getString("name","")
+        var score = sharedPreferences.getString("score","")
+        var i =0
+        var name_v = findViewById<TextView>(R.id.name)
+        var score_v = findViewById<TextView>(R.id.score)
+        name_v.text ="${name}"
+        score_v.text = "${score}"
     }
 }

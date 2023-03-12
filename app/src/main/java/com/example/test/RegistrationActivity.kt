@@ -18,6 +18,10 @@ class RegistrationActivity : AppCompatActivity() {
             if (name.text.isEmpty() || email.text.isEmpty() || username.text.isEmpty() || password.text.isEmpty())
                 note.visibility = View.VISIBLE
             else {
+                var sharedPreferences = getSharedPreferences("reg", MODE_PRIVATE)
+                var edit = sharedPreferences.edit()
+                edit.putString("name",name.text.toString()).commit()
+                edit.apply()
                 form.visibility = View.INVISIBLE
                 subjects.visibility = View.VISIBLE
                 title_name.text = name.text

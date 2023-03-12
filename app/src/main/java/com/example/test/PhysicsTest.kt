@@ -1,6 +1,7 @@
 package com.example.test
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +11,11 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_math_test.*
 import lecho.lib.hellocharts.model.PieChartData
 import lecho.lib.hellocharts.model.SliceValue
-
 
 class PhysicsTest : AppCompatActivity(), View.OnClickListener {
     var tests = arrayListOf<Test>()
@@ -26,11 +28,18 @@ class PhysicsTest : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_math_test)
+        var sharedPreferences = getSharedPreferences("reg", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+        var gson = Gson()
+        var userList = mutableListOf<ModelClass>()
+        var type = object : TypeToken<List<ModelClass>>() {}.type
+
         tests.add(Test("Mass definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The amount of matter in an object."))
         tests.add(Test("Acceleration definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The rate at which an object changes its velocity."))
         tests.add(Test("Gravity definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The force a planet or other body draws objects toward its center."))
         tests.add(Test("Velocity definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The speed of an object in a certain direction."))
         tests.add(Test("Friction definition", "The amount of matter in an object.", "The rate at which an object changes its velocity.", "The force a planet or other body draws objects toward its center.", "The speed of an object in a certain direction.", "The force that opposes motion between two objects in contact."))
+
         createNumber(tests.size)
         createTest(index)
 
@@ -132,9 +141,16 @@ class PhysicsTest : AppCompatActivity(), View.OnClickListener {
                 }
                 numberOfCorrectAnswers++
             }
-            Log.d("correct answers -> ", numberOfCorrectAnswers.toString())
             numberOfIncorrectAnswers = tests.size-numberOfCorrectAnswers
 
         }
+    }
+    fun showRating(view: View) {
+        var sharedPreferences = getSharedPreferences("reg", MODE_PRIVATE)
+        var edit = sharedPreferences.edit()
+        edit.putString("score", numberOfCorrectAnswers.toString()).commit()
+        edit.apply()
+        val i = Intent(this, Rating::class.java)
+        startActivity(i)
     }
 }
